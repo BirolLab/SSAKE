@@ -7,8 +7,8 @@
 
 # SSAKE
 ## Short Sequence Assembly by K-mer search and 3' read Extension
-## SSAKE v4.0 Rene L. Warren, 2006-2020
-## email: rwarren [at] bcgsc [dot] ca
+## SSAKE v4.1 Rene L. Warren, 2006-2026
+## email: rwarren [at] bccrc [dot] ca
 
 
 ### Description
@@ -24,7 +24,7 @@ It is an easy-to-use, robust, reliable and tractable assembly algorithm for shor
 Best assembly results are achieved with quality-trimmed reads.  When dealing with Solexa/Illumina sequences, remove low quality bases, whenever possible, with:
 
 <pre>
-~/ssake_v4.0/tools/
+~/ssake_v4.1/tools/
 TQS.py 
 eg. TQS.py -f _seq.txt -q _prb.txt -t 5 -d 5 -l #CYCLES -c 20  OR OTHER SETTINGS 
 TQSfastq.py
@@ -35,7 +35,7 @@ where human.fof contains fastq files to trim
 make sure the trimmed fastq ends with 1 and 2 for the first and second reads of a pair
 eg. makePairedOutput2UNEQUALfiles.pl NA24143_genome_phased_namesorted.bam1_1.fqc70q20e33.fa NA24143_genome_phased_namesorted.bam1_2.fqc70q20e33.fa 350
 will produced "paired.fa" and "unpaired.fa"
-~/ssake_v4.0/SSAKE -f paired.fa -g unpaired.fa -p 1 -m 20 -o 3 -c 1 -w 5
+~/ssake_v4.1/SSAKE -f paired.fa -g unpaired.fa -p 1 -m 20 -o 3 -c 1 -w 5
 
 A BASIC PIPELINE TO HELP YOU PREPARE YOUR INPUT PAIRED READS EXISTS (./tools/runSSAKE.sh)
 
@@ -47,6 +47,14 @@ The scripts are located in ./tools subdirectory included with this release.
 It is recommended that you run TQS.py/TQSfastq.py for every tile (batch job) and cat the outputted fasta file, especially if your data set is large (e.g. entire flowcell)
 
 For trimming paired-end sequences (using _seq.txt and _prb.txt from Illumina), please refer to TRIMMING_PAIRED_READS.README located in the ./tools subdirectory
+
+### What's new in v4.1 ?
+----------------------
+
+<pre>
+-Fixed non-deterministic behavior exposed by Perl 5.26 via randomized hash traversal. 
+-Refer to https://github.com/BirolLab/SSAKE/issues/13
+</pre>
 
 ### What's new in v4.0 ?
 ----------------------
@@ -635,7 +643,7 @@ Note: Python scripts (TQS.py, TQSfastq.py, TQSexport.fq) are provided to help tr
 ### License
 -------
 
-SSAKE Copyright (c) 2006-2020 Canada's Michael Smith Genome Science Centre.  All rights reserved.
+SSAKE Copyright (c) 2006-present, BC Cancer.  All rights reserved.
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
